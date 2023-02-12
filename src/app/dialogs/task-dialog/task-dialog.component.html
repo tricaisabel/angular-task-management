@@ -1,0 +1,139 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+  <h1 mat-dialog-title>
+    <mat-icon>{{ getIcon() }}</mat-icon> Task number {{ task.id }}
+  </h1>
+
+  <button
+    mat-icon-button
+    color="primary"
+    (click)="editMode = !editMode"
+    tabindex="-1"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div fxLayout="column" fxLayoutAlign="center">
+      <!-- Title input -->
+      <label for="title">Title</label>
+      <mat-form-field width="100%">
+        <input
+          matInput
+          placeholder="Title"
+          [ngClass]="{ 'disabled-class': !editMode }"
+          [disabled]="!editMode"
+          ngModel
+          [(ngModel)]="task.title"
+          name="title"
+        />
+      </mat-form-field>
+
+      <!-- Description area -->
+      <label for="title">Description</label>
+      <mat-form-field width="100%">
+        <textarea
+          matInput
+          placeholder="Description"
+          [ngClass]="{ 'disabled-class': !editMode }"
+          [disabled]="!editMode"
+          ngModel
+          [(ngModel)]="task.description"
+          name="description"
+        ></textarea>
+      </mat-form-field>
+
+      <label for="priority">Priority</label>
+      <mat-form-field width="100%">
+        <input
+          matInput
+          placeholder="Priority"
+          [ngClass]="{ 'disabled-class': !editMode }"
+          [disabled]="!editMode"
+          ngModel
+          [(ngModel)]="task.priority"
+          name="priority"
+        />
+      </mat-form-field>
+
+      <!-- Type select -->
+      <label for="type">Type</label>
+      <mat-form-field>
+        <select
+          matNativeControl
+          name="type"
+          [disabled]="!editMode"
+          [ngClass]="{ 'disabled-class': !editMode }"
+          ngModel
+          [(ngModel)]="task.type"
+          name="type"
+        >
+          <option *ngFor="let type of taskTypes" [value]="type.value">
+            {{ type.viewValue }}
+          </option>
+        </select>
+      </mat-form-field>
+
+      <!-- Status select (new by default) -->
+      <label for="status">Status</label>
+      <mat-form-field>
+        <select
+          matNativeControl
+          name="status"
+          [disabled]="!editMode"
+          [ngClass]="{ 'disabled-class': !editMode }"
+          ngModel
+          [(ngModel)]="task.status"
+          name="status"
+        >
+          <option *ngFor="let status of statusTypes" [value]="status.value">
+            {{ status.viewValue }}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div
+      class="view-info"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngIf="!editMode"
+    >
+      <div class="section">
+        <p>Created by</p>
+        <app-user-card
+          [title]="task.createdBy.username"
+          [subtitle]="task.createdBy.role"
+        ></app-user-card>
+      </div>
+
+      <div class="section">
+        <p>Assigned to</p>
+        <app-user-card
+          [title]="task.assignedTo.username"
+          [subtitle]="task.assignedTo.role"
+        ></app-user-card>
+      </div>
+    </div>
+
+    <!-- <p>Created by</p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> -->
+
+    <br />
+
+    <div fxLayout="row" fxLayoutAlign="end" fxFlexFill>
+      <button mat-flat-button color="primary" mat-dialog-close type="submit">
+        Save
+      </button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </form>
+</div>

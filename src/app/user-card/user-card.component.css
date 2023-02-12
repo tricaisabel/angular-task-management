@@ -1,0 +1,21 @@
+.user-card-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.user-card {
+  width: 200px;
+}
+
+mat-card-content:last-child {
+  padding-bottom: 0px;
+}
+
+mat-card-title {
+  font-size: 15px;
+}
+
+mat-card-subtitle,
+mat-card-title {
+  padding: 0px;
+}

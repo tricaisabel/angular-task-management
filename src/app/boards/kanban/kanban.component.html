@@ -1,0 +1,45 @@
+<div
+  class="board"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="dropGrid($event)"
+  fxLayout="row"
+  fxLayoutGap="10px"
+  fxLayoutAlign="space-between"
+  fxFlexFill
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+>
+  <div
+    cdkDragLockAxis="x"
+    class="board-column"
+    *ngFor="let column of board.columns"
+    cdkDrag
+  >
+    <div class="column-title" cdkDragHandle>
+      {{ column.name }}
+    </div>
+    <div
+      class="tasks-container"
+      id="{{ column.id }}"
+      [cdkDropListConnectedTo]="['1', '2', '3', '4']"
+      cdkDropList
+      [cdkDropListData]="column.tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <mat-card
+        *ngFor="let item of column.tasks"
+        cdkDrag
+        (click)="openDialog(item)"
+      >
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon>{{ getIcon(item) }}</mat-icon>
+          </div>
+          <mat-card-title>{{ item.title }}</mat-card-title>
+          <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>

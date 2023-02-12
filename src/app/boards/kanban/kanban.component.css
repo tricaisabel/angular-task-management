@@ -1,0 +1,69 @@
+.board {
+  margin-top: 20px;
+}
+
+.board-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 0;
+
+  max-width: 250px;
+  padding: 25px;
+
+  border-radius: 4px;
+  background: #f6f8f9;
+}
+
+.column-title {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.tasks-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+mat-card-title {
+  font-size: 15px;
+}
+
+mat-card-subtitle,
+mat-card-title {
+  padding: 0px !important;
+}
+
+mat-card {
+  margin-bottom: 5px;
+}
+
+mat-card:hover {
+  cursor: pointer;
+  background-color: rgb(231, 231, 231);
+  transition: 0.4s;
+}
+
+mat-card-header {
+  padding: 16px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

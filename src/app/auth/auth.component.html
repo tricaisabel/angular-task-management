@@ -1,0 +1,37 @@
+<div id="auth-container" fxLayout="row" fxLayoutAlign="space-between start">
+  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="50px">
+    <h1>Welcome to Task Overflow</h1>
+
+    <img
+      mat-card-image
+      src="../../assets/20945597.jpeg"
+      alt="Security illustration"
+      width="400px"
+    />
+
+    <p class="description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce odio nulla,
+      tincidunt a est ac, semper iaculis augue. Morbi semper a justo ut
+      accumsan. In in ex non velit feugiat ultricies. Aliquam mattis magna at
+      lobortis malesuada. Maecenas vulputate id libero sit amet pulvinar. Donec
+      luctus porta ante ac facilisis. Curabitur dictum ligula vitae mi pulvinar
+      consectetur vel vitae dui. Donec vehicula maximus varius. Lorem ipsum
+      dolor sit amet, consectetur adipiscing elit.
+    </p>
+  </div>
+  <div id="card-container" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+      <mat-tab-group mat-card-content>
+        <mat-tab label="Log In">
+          <app-login></app-login>
+          <mat-card-actions> </mat-card-actions>
+        </mat-tab>
+
+        <mat-tab label="Create Account">
+          <app-create-account></app-create-account>
+          <mat-card-actions> </mat-card-actions>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

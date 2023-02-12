@@ -1,0 +1,57 @@
+<div *ngIf="board; else boardNotFound">
+  <button mat-button color="primary" routerLink="/boards">
+    All Boards
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <h1>
+    {{ board.name }}
+    <mat-chip
+      [cdkCopyToClipboard]="board.id.toString()"
+      matTooltip="Copy to clipboard"
+      matTooltipPosition="above"
+      #tooltip="matTooltip"
+      (click)="changeTooltip()"
+      >{{ board.id }}</mat-chip
+    >
+  </h1>
+
+  <app-user-card title="User one" subtitle="Project Owner"></app-user-card>
+
+  <br />
+
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-button-toggle-group>
+      <mat-button-toggle value="kanban" checked="true" #kanban
+        >Kanban</mat-button-toggle
+      >
+      <mat-button-toggle value="list" #list>List View</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="right-buttons">
+      <button
+        mat-fab
+        color="primary"
+        matTooltip="Add new task"
+        matTooltipPosition="above"
+        (click)="openDialog()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <button
+        mat-fab
+        color="primary"
+        matTooltip="Manage team"
+        matTooltipPosition="above"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <app-kanban *ngIf="kanban.checked" [board]="board"></app-kanban>
+</div>
+
+<ng-template #boardNotFound>
+  <p>Board not found</p>
+</ng-template>
