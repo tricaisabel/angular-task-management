@@ -11,24 +11,20 @@ import { Router } from '@angular/router';
   templateUrl: './boards.component.html',
   styleUrls: ['./boards.component.css'],
 })
-export class BoardsComponent implements AfterViewInit, OnInit {
-  boards: Board[] = [];
-
-  displayedColumns: string[] = ['id', 'name', 'createdBy'];
-  dataSource = new MatTableDataSource(this.boards);
+export class BoardsComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'title', 'createdBy', 'team', 'tasks'];
+  dataSource: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private boardsService: BoardsService, private router: Router) {}
   ngOnInit(): void {
-    this.boards = this.boardsService.getAllBoards();
-    this.dataSource = new MatTableDataSource(this.boards);
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.boardsService.fetchBoards().subscribe((boards) => {
+      this.dataSource = new MatTableDataSource(boards);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   applyFilter(event: Event) {

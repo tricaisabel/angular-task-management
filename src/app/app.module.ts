@@ -18,7 +18,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { KanbanComponent } from './boards/kanban/kanban.component';
 import { DialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-team-dialog.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,8 @@ import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-t
     FormsModule,
     FlexLayoutModule,
     DragDropModule,
+    HttpClientModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

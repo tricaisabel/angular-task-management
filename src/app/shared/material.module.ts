@@ -20,6 +20,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [],
@@ -45,6 +46,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatDatepickerModule,
   ],
 })
 export class MaterialModule {}

@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Form, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
@@ -11,19 +11,23 @@ import { BoardsService } from 'src/app/shared/boards.service';
   styleUrls: ['./task-dialog.component.css'],
 })
 export class DialogComponent implements OnInit {
+  @ViewChild('f') form: NgForm;
+  date: FormControl;
   task: Task;
+  templateMode: boolean = false;
   editMode: boolean = false;
   taskTypes = [
     { viewValue: 'Bug', value: 'BUG' },
     { viewValue: 'User Story', value: 'USER_STORY' },
     { viewValue: 'Issue', value: 'ISSUE' },
+    { viewValue: 'Epic', value: 'EPIC' },
   ];
 
   statusTypes = [
     { viewValue: 'New', value: 'NEW' },
     { viewValue: 'Active', value: 'ACTIVE' },
     { viewValue: 'Done', value: 'DONE' },
-    { viewValue: 'Done', value: 'BLOCKED' },
+    { viewValue: 'Blocked', value: 'BLOCKED' },
   ];
 
   constructor(
@@ -35,24 +39,18 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
     this.editMode = this.data.editMode;
     if (!this.data.task) {
-      this.task = new Task(
-        '',
-        '',
-        '',
-        'NEW',
-        '',
-        '',
-        new User('none', 'none', ''),
-        new User('none', 'none', '')
-      );
+      this.task = Task.createTemplateTask();
+      this.templateMode = true;
+      this.date = new FormControl(new Date());
     } else {
       this.task = this.data.task;
+      this.templateMode = false;
+      // this.date = new FormControl(this.task.deadline);
     }
   }
 
-  onSubmit(form: Form) {
-    //display form values
-    console.log(form);
+  onSubmit() {
+    console.log(this.form.value);
   }
 
   getIcon() {

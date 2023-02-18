@@ -1,10 +1,12 @@
-import { Column } from './column.model';
+import { Task } from './task.model';
+import User from './user.model';
 
 export class Board {
   constructor(
     public id: string,
-    public name: string,
-    public createdBy: string,
-    public columns: Column[]
+    public title: string,
+    public createdBy: User,
+    public tasks: Task[],
+    public team: User[]
   ) {}
 }

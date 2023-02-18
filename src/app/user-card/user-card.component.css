@@ -5,6 +5,7 @@
 
 .user-card {
   width: 200px;
+  margin: 20px 0px;
 }
 
 mat-card-content:last-child {

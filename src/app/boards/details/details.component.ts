@@ -23,8 +23,9 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      const board = this.boardsService.getBoardById(param['id']);
-      if (board) this.board = board;
+      this.boardsService.getBoardById(param['id']).subscribe((board) => {
+        this.board = board;
+      });
     });
   }
 
