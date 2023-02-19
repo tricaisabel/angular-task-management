@@ -6,4 +6,6 @@ import { Router } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent {}
+export class AuthComponent {
+  isLoading = false;
+}

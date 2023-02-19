@@ -18,8 +18,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { KanbanComponent } from './boards/kanban/kanban.component';
 import { DialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-team-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { AuthGuard } from './auth/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +49,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     MatNativeDateModule,
   ],
-  providers: [],
+  providers: [
+    MatSnackBar,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

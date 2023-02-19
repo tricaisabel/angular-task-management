@@ -36,7 +36,7 @@ export class DetailsComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { editMode: true },
+      data: { editMode: true, boardId: this.board.id },
       width: '500px',
     });
 

@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-create-account',
@@ -7,7 +10,6 @@ import { Form, NgForm } from '@angular/forms';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent {
-  existingUsernames = ['test', 'anotherTest'];
   @ViewChild('f') formData: NgForm;
   checks = [
     { name: 'Contains at least one digit', value: false },
@@ -16,12 +18,11 @@ export class CreateAccountComponent {
     { name: 'Length > 8 characters', value: false },
   ];
 
-  onChangeUsername(newValue: string) {
-    const usernameField = this.formData.form.controls['username'];
-    if (this.existingUsernames.includes(newValue)) {
-      usernameField.setErrors({ incorrect: true });
-    }
-  }
+  constructor(
+    private auth: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   onChangePassword(newValue: string) {
     var checks = [/\d/, /[a-z]/, /[A-Z]/, /^.{8,}$/];
@@ -38,15 +39,28 @@ export class CreateAccountComponent {
     }
   }
 
-  onSubmit(form: Form) {
+  onSubmit(form: NgForm) {
     //display form values
-    console.log(form);
-    //reset values
-    this.formData.reset();
-    //reset valid state
-    for (let name in this.formData.controls) {
-      this.formData.controls[name].setErrors(null);
-    }
+    const data = {
+      username: form.value.username,
+      password: form.value.password,
+      email: form.value.email,
+      role: form.value.role,
+    };
+    console.log(data);
+    this.auth.createAccount(data).subscribe(
+      (response) => {
+        this.snackBar.open('Your user was created. Have fun!');
+        this.router.navigate(['/boards']);
+      },
+      (error) => {
+        this.snackBar.open(error.error.message);
+        this.formData.reset();
+        for (let name in this.formData.controls) {
+          this.formData.controls[name].setErrors(null);
+        }
+      }
+    );
   }
 
   getErrorMessage(input: any) {
@@ -54,8 +68,6 @@ export class CreateAccountComponent {
     if (value === '') return `${input.name} can't be empty`;
 
     switch (input.name) {
-      case 'username':
-        return 'The username already exists';
       case 'repeat':
         return 'The passwords must match';
     }

@@ -23,8 +23,8 @@ export class Task {
       '',
       '',
       '',
-      new User('none', 'none', '', ''),
-      new User('none', 'none', '', '')
+      new User('none', 'none', '', '', '', new Date()),
+      new User('none', 'none', '', '', '', new Date())
     );
   }
 }

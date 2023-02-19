@@ -24,11 +24,13 @@
     [cdkConnectedOverlayOrigin]="trigger"
     [cdkConnectedOverlayOpen]="isOpen"
   >
-    <app-user-card title="User one" subtitle="Manager">
+    <app-user-card [title]="user.username" [subtitle]="user.role" *ngIf="user">
       <div fxLayout="column" fxLayoutAlign="start center">
         <button mat-flat-button>Manage Profile</button>
         <button mat-flat-button>Settings</button>
-        <button mat-flat-button routerLink="/">Log out</button>
+        <button mat-flat-button routerLink="/" (click)="logOut()">
+          Log out
+        </button>
       </div>
     </app-user-card>
   </ng-template>

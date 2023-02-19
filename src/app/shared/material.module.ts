@@ -21,9 +21,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [],
+  declarations: [LoadingSpinnerComponent],
   exports: [
     MatSlideToggleModule,
     MatToolbarModule,
@@ -47,6 +49,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatButtonToggleModule,
     MatDialogModule,
     MatDatepickerModule,
+    LoadingSpinnerComponent,
   ],
 })
 export class MaterialModule {}

@@ -33,6 +33,7 @@ export class KanbanComponent implements OnInit {
   constructor(public dialog: MatDialog, private boardsService: BoardsService) {}
 
   ngOnInit(): void {
+    //put every task of the board into the right column by status
     this.board.tasks.forEach((task) => {
       this.columns.forEach((column) => {
         if (task.status === column.name) {
@@ -60,7 +61,7 @@ export class KanbanComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      //change status to new status
+      //TO DO: change status to new status
     }
   }
 
@@ -70,9 +71,7 @@ export class KanbanComponent implements OnInit {
       width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   getIcon(task: Task) {

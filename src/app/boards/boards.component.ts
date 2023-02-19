@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { BoardsService } from '../shared/boards.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-boards',
@@ -18,10 +19,15 @@ export class BoardsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private boardsService: BoardsService, private router: Router) {}
+  constructor(
+    private boardsService: BoardsService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     this.boardsService.fetchBoards().subscribe((boards) => {
       this.dataSource = new MatTableDataSource(boards);
+      //makes sorting and pagination work
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -34,5 +40,9 @@ export class BoardsComponent implements OnInit {
 
   showDetail(row: any) {
     this.router.navigate(['/boards', row.id]);
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 }

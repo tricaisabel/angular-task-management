@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Form, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
-import User from 'src/app/models/user.model';
 import { BoardsService } from 'src/app/shared/boards.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class DialogComponent implements OnInit {
   task: Task;
   templateMode: boolean = false;
   editMode: boolean = false;
+
   taskTypes = [
     { viewValue: 'Bug', value: 'BUG' },
     { viewValue: 'User Story', value: 'USER_STORY' },
@@ -28,6 +29,13 @@ export class DialogComponent implements OnInit {
     { viewValue: 'Active', value: 'ACTIVE' },
     { viewValue: 'Done', value: 'DONE' },
     { viewValue: 'Blocked', value: 'BLOCKED' },
+  ];
+
+  priorityTypes = [
+    { viewValue: 'Low', value: 'LOW' },
+    { viewValue: 'Medium', value: 'MEDIUM' },
+    { viewValue: 'High', value: 'HIGH' },
+    { viewValue: 'Critical', value: 'CRITICAL' },
   ];
 
   constructor(
@@ -45,12 +53,18 @@ export class DialogComponent implements OnInit {
     } else {
       this.task = this.data.task;
       this.templateMode = false;
-      // this.date = new FormControl(this.task.deadline);
     }
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    const form = this.form.value;
+
+    this.boardsService
+      .newTask(form, this.data.boardId)
+      .subscribe((responseData) => {
+        console.log(responseData);
+        //To Do: handle error
+      });
   }
 
   getIcon() {

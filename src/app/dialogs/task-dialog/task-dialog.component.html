@@ -46,17 +46,24 @@
       </mat-form-field>
 
       <p>Priority</p>
-      <mat-form-field width="100%">
-        <input
-          matInput
-          placeholder="Priority"
-          [ngClass]="{ 'disabled-class': !editMode }"
+      <mat-form-field>
+        <select
+          matNativeControl
+          name="priority"
           [disabled]="!editMode"
+          [ngClass]="{ 'disabled-class': !editMode }"
           ngModel
           [(ngModel)]="task.priority"
           name="priority"
           required
-        />
+        >
+          <option
+            *ngFor="let priority of priorityTypes"
+            [value]="priority.value"
+          >
+            {{ priority.viewValue }}
+          </option>
+        </select>
       </mat-form-field>
 
       <!-- Type select -->
@@ -157,6 +164,7 @@
         type="submit"
         [disabled]="!f.valid || !editMode"
         *ngIf="editMode"
+        mat-dialog-close
       >
         Save
       </button>

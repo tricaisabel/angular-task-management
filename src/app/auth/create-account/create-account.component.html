@@ -24,7 +24,6 @@
       ngModel
       name="username"
       required
-      (ngModelChange)="onChangeUsername($event)"
       #username="ngModel"
     />
     <mat-error *ngIf="username.invalid">{{
@@ -80,9 +79,11 @@
   <mat-form-field appearance="fill">
     <mat-label>Your role</mat-label>
     <select matNativeControl required ngModel name="role">
-      <option value="developer">Developer</option>
-      <option value="intern">Intern</option>
-      <option value="manager">Manager</option>
+      <option value="DEVELOPER">Developer</option>
+      <option value="INTERN">Intern</option>
+      <option value="PROJECT_MANAGER">Project Manager</option>
+      <option value="PRODUCT_OWNER">Product Owner</option>
+      <option value="DESIGNER">Designer</option>
     </select>
   </mat-form-field>
 

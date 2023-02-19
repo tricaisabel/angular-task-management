@@ -1,4 +1,7 @@
 <app-header></app-header>
-<div class="mainContainer">
+<div class="mainContainer" *ngIf="!isLoading">
   <router-outlet></router-outlet>
+</div>
+<div fxLayout="row" fxLayoutAlign="center" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
 </div>
