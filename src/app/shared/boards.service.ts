@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Board } from '../models/board.model';
 import { Task } from '../models/task.model';
+import User from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsService {
@@ -67,6 +68,15 @@ export class BoardsService {
       .subscribe((response) => {
         this.fetchBoards();
       });
+  }
+
+  addUserToTeam(boardId: string, userId: string) {
+    return this.http.post<User | void>(
+      `http://localhost:3000/boards/${boardId}/team`,
+      {
+        userId,
+      }
+    );
   }
 
   getIconByType(task: Task) {

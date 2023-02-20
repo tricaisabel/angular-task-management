@@ -47,7 +47,6 @@ export class CreateAccountComponent {
       email: form.value.email,
       role: form.value.role,
     };
-    console.log(data);
     this.auth.createAccount(data).subscribe(
       (response) => {
         this.snackBar.open('Your user was created. Have fun!');

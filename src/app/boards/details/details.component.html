@@ -44,12 +44,24 @@
     [subtitle]="board.createdBy.role"
   ></app-user-card>
 
-  <mat-button-toggle-group>
-    <mat-button-toggle value="kanban" checked="true" #kanban
-      >Kanban</mat-button-toggle
-    >
-    <mat-button-toggle value="list" #list>List View</mat-button-toggle>
-  </mat-button-toggle-group>
+  <div fxLayout="row" class="input-list">
+    <mat-button-toggle-group>
+      <mat-button-toggle value="kanban" checked="true" #kanban
+        >Kanban</mat-button-toggle
+      >
+      <mat-button-toggle value="list" #list>List View</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- <mat-form-field class="form-input">
+      <mat-label>Task Filter</mat-label>
+      <input
+        matInput
+        placeholder="Ex. task"
+        #input
+        (keyup)="applyFilter($event)"
+      />
+    </mat-form-field> -->
+  </div>
 
   <app-kanban *ngIf="kanban.checked" [boardId]="id"></app-kanban>
 </div>

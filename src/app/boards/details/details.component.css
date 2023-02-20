@@ -1,3 +1,19 @@
 .right-buttons button {
   margin-left: 10px;
 }
+
+.input-list {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  min-width: 300px;
+  max-width: 500px;
+  width: 22%;
+}
+
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0;
+}

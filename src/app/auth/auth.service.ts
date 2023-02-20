@@ -104,4 +104,8 @@ export class AuthService {
       this.router.navigateByUrl('/');
     }, expirationDuration);
   }
+
+  getAllUsers() {
+    return this.http.get<User[]>('http://localhost:3000/auth/users');
+  }
 }

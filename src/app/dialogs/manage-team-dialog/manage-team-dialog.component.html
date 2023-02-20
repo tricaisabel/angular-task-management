@@ -7,23 +7,37 @@
     <div matListItemLine>{{ user.role | lowercase }}</div>
   </mat-list-option>
 </mat-selection-list>
-<!-- 
-<mat-form-field appearance="fill">
-  <mat-label>New Team Member</mat-label>
-  <input
-    type="text"
-    placeholder="Pick one"
-    aria-label="User"
-    matInput
-    [formControl]="myControl"
-    [matAutocomplete]="auto"
-  />
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option
-      *ngFor="let option of filteredOptions | async"
-      [value]="option.id"
-    >
-      {{ option.username }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field> -->
+
+<br />
+
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-around center"
+  fxFlexFill
+  *ngIf="data.isCreator"
+>
+  <mat-form-field appearance="fill" class="autocomplete">
+    <mat-label>New Team Member</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="User"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      [(ngModel)]="newUserId"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option.id"
+      >
+        {{ option.username }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="addUserToTeam()">
+    Add
+  </button>
+</div>
