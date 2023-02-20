@@ -1,3 +1,4 @@
+import { NoDataRowOutlet } from '@angular/cdk/table';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -6,7 +7,8 @@ import { Task } from '../models/task.model';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsService {
-  taskAdded = new Subject<Task>();
+  boardsChanged = new Subject<Board[]>();
+
   constructor(private http: HttpClient) {}
 
   getBoardById(id: string) {
@@ -14,16 +16,57 @@ export class BoardsService {
   }
 
   fetchBoards() {
-    return this.http.get<Board[]>('http://localhost:3000/boards');
+    this.http
+      .get<Board[]>('http://localhost:3000/boards')
+      .subscribe((boards) => {
+        this.boardsChanged.next(boards);
+        console.log('fetched');
+      });
+  }
+
+  createNewBoard(title: string) {
+    this.http
+      .post('http://localhost:3000/boards', {
+        title,
+      })
+      .subscribe((response) => {
+        this.fetchBoards();
+      });
   }
 
   newTask(data: any, boardId: string) {
-    this.taskAdded.next(data);
     data.deadline = data.deadline.toISOString();
     data.boardId = boardId;
-    return this.http.post('http://localhost:3000/tasks', {
-      ...data,
-    });
+
+    this.http
+      .post('http://localhost:3000/tasks', {
+        ...data,
+      })
+      .subscribe((response) => {
+        this.fetchBoards();
+      });
+  }
+
+  changeTaskStatus(idTask: string, newStatus: string) {
+    this.http
+      .patch(`http://localhost:3000/tasks/${idTask}/status`, {
+        status: newStatus,
+      })
+      .subscribe((response) => {
+        this.fetchBoards();
+      });
+  }
+
+  editTask(idTask: string, newProperties: any, assignedToId: string) {
+    newProperties.deadline = new Date(newProperties.deadline).toISOString();
+    newProperties.assignedTo = assignedToId;
+    this.http
+      .patch(`http://localhost:3000/tasks/${idTask}`, {
+        ...newProperties,
+      })
+      .subscribe((response) => {
+        this.fetchBoards();
+      });
   }
 
   getIconByType(task: Task) {

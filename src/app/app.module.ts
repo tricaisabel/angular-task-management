@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -24,6 +24,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth.guard';
+import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { AuthGuard } from './auth/auth.guard';
     KanbanComponent,
     DialogComponent,
     ManageTeamDialogComponent,
+    BoardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { AuthGuard } from './auth/auth.guard';
     DragDropModule,
     HttpClientModule,
     MatNativeDateModule,
+    ReactiveFormsModule,
   ],
   providers: [
     MatSnackBar,

@@ -5,9 +5,11 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
 import { Board } from 'src/app/models/board.model';
 import { Task } from 'src/app/models/task.model';
+import User from 'src/app/models/user.model';
 import { BoardsService } from 'src/app/shared/boards.service';
 
 type Column = {
@@ -22,23 +24,34 @@ type Column = {
   styleUrls: ['./kanban.component.css'],
 })
 export class KanbanComponent implements OnInit {
-  @Input() board: Board;
+  @Input() boardId: string;
   columns: Column[] = [
     { id: '1', name: 'NEW', tasks: [] },
     { id: '2', name: 'ACTIVE', tasks: [] },
     { id: '3', name: 'DONE', tasks: [] },
     { id: '4', name: 'BLOCKED', tasks: [] },
   ];
+  team: User[];
 
   constructor(public dialog: MatDialog, private boardsService: BoardsService) {}
 
   ngOnInit(): void {
-    //put every task of the board into the right column by status
-    this.board.tasks.forEach((task) => {
-      this.columns.forEach((column) => {
-        if (task.status === column.name) {
-          column.tasks.push(task);
-        }
+    this.boardsService.fetchBoards();
+    this.boardsService.boardsChanged.subscribe((boards) => {
+      const board = boards.find((board) => board.id === this.boardId);
+
+      if (!board) {
+        return;
+      }
+      this.team = board.team;
+      this.columns.forEach((column) => (column.tasks = []));
+
+      board.tasks.forEach((task) => {
+        this.columns.forEach((column) => {
+          if (task.status === column.name) {
+            column.tasks.push(task);
+          }
+        });
       });
     });
   }
@@ -61,17 +74,18 @@ export class KanbanComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      //TO DO: change status to new status
+      //change status
+      const taskId = event.container.data[event.currentIndex].id;
+      const newStatus = this.columns[+event.container.id - 1].name;
+      this.boardsService.changeTaskStatus(taskId, newStatus);
     }
   }
 
   openDialog(task: Task) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: { task: { ...task }, editMode: false },
+      data: { task: { ...task }, editMode: false, team: this.team },
       width: '500px',
     });
-
-    dialogRef.afterClosed().subscribe((result) => {});
   }
 
   getIcon(task: Task) {

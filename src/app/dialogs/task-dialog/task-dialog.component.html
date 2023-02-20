@@ -157,7 +157,34 @@
     </div>
     <br />
 
-    <div fxLayout="row" fxLayoutAlign="end" fxFlexFill>
+    <div *ngIf="editMode">
+      <p>Assigned to</p>
+      <mat-form-field appearance="fill">
+        <mat-label>User</mat-label>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="User"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+          name="assignedTo"
+          ngModel
+          required
+          [(ngModel)]="assignedToId"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let option of filteredOptions | async"
+            [value]="option.id"
+          >
+            {{ option.username }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions align="end">
       <button
         mat-flat-button
         color="primary"

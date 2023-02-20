@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { BoardsService } from '../shared/boards.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BoardDialogComponent } from '../dialogs/board-dialog/board-dialog.component';
 
 @Component({
   selector: 'app-boards',
@@ -22,10 +24,12 @@ export class BoardsComponent implements OnInit {
   constructor(
     private boardsService: BoardsService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private boardDialog: MatDialog
   ) {}
   ngOnInit(): void {
-    this.boardsService.fetchBoards().subscribe((boards) => {
+    this.boardsService.fetchBoards();
+    this.boardsService.boardsChanged.subscribe((boards) => {
       this.dataSource = new MatTableDataSource(boards);
       //makes sorting and pagination work
       this.dataSource.paginator = this.paginator;
@@ -44,5 +48,11 @@ export class BoardsComponent implements OnInit {
 
   logOut() {
     this.authService.logOut();
+  }
+
+  openBoardDialog() {
+    this.boardDialog.open(BoardDialogComponent, {
+      width: '500px',
+    });
   }
 }

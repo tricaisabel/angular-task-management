@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>New Board</h1>
+
+<mat-form-field width="100%">
+  <mat-label>Title of the new board</mat-label>
+  <input matInput placeholder="Title" [(ngModel)]="title" />
+</mat-form-field>
+
+<div mat-dialog-actions align="end">
+  <button
+    mat-button
+    color="primary"
+    (click)="onCreateNewBoard()"
+    mat-dialog-close
+  >
+    Create
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+</div>

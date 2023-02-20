@@ -22,7 +22,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [LoadingSpinnerComponent],
@@ -50,6 +51,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatDialogModule,
     MatDatepickerModule,
     LoadingSpinnerComponent,
+    MatAutocompleteModule,
+    MatListModule,
   ],
 })
 export class MaterialModule {}

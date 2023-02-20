@@ -14,7 +14,7 @@
         color="primary"
         matTooltip="Add new task"
         matTooltipPosition="above"
-        (click)="openDialog()"
+        (click)="openTaskDialog()"
       >
         <mat-icon>add</mat-icon>
       </button>
@@ -23,6 +23,7 @@
         color="primary"
         matTooltip="Manage team"
         matTooltipPosition="above"
+        (click)="openTeamDialog()"
       >
         <mat-icon>account_circle</mat-icon>
       </button>
@@ -50,7 +51,7 @@
     <mat-button-toggle value="list" #list>List View</mat-button-toggle>
   </mat-button-toggle-group>
 
-  <app-kanban *ngIf="kanban.checked" [board]="board"></app-kanban>
+  <app-kanban *ngIf="kanban.checked" [boardId]="id"></app-kanban>
 </div>
 
 <ng-template #boardNotFound>

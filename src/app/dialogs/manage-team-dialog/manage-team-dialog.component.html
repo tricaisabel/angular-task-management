@@ -1,1 +1,29 @@
-<p>manage-team-dialog works!</p>
+<h1 mat-dialog-title>Manage Team</h1>
+
+<mat-selection-list>
+  <mat-list-option *ngFor="let user of team">
+    <div mat-card-avatar class="user-card-image" matListItemIcon></div>
+    <div matListItemTitle>{{ user.username }}</div>
+    <div matListItemLine>{{ user.role | lowercase }}</div>
+  </mat-list-option>
+</mat-selection-list>
+<!-- 
+<mat-form-field appearance="fill">
+  <mat-label>New Team Member</mat-label>
+  <input
+    type="text"
+    placeholder="Pick one"
+    aria-label="User"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option.id"
+    >
+      {{ option.username }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field> -->
