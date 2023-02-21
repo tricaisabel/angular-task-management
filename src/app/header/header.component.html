@@ -10,29 +10,37 @@
   <span class="example-spacer"></span>
 
   <!-- Profile button -->
-  <button
-    mat-icon-button
-    cdkOverlayOrigin
-    matTooltip="User details"
-    #trigger="cdkOverlayOrigin"
-    (click)="isOpen = !isOpen"
-  >
-    <mat-icon>perm_identity</mat-icon>
-  </button>
+  <div *ngIf="user">
+    <button
+      mat-icon-button
+      cdkOverlayOrigin
+      matTooltip="User details"
+      #trigger="cdkOverlayOrigin"
+      (click)="isOpen = !isOpen"
+    >
+      <mat-icon>perm_identity</mat-icon>
+    </button>
 
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="trigger"
-    [cdkConnectedOverlayOpen]="isOpen"
-  >
-    <app-user-card [title]="user.username" [subtitle]="user.role" *ngIf="user">
-      <div fxLayout="column" fxLayoutAlign="start center">
-        <button mat-flat-button (click)="isOpen = false">Manage Profile</button>
-        <button mat-flat-button (click)="isOpen = false">Settings</button>
-        <button mat-flat-button routerLink="/" (click)="logOut()">
-          Log out
-        </button>
-      </div>
-    </app-user-card>
-  </ng-template>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
+      [cdkConnectedOverlayOpen]="isOpen"
+    >
+      <app-user-card
+        [title]="user.username"
+        [subtitle]="user.role"
+        *ngIf="user"
+      >
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <button mat-flat-button (click)="isOpen = false">
+            Manage Profile
+          </button>
+          <button mat-flat-button (click)="isOpen = false">Settings</button>
+          <button mat-flat-button routerLink="/" (click)="logOut()">
+            Log out
+          </button>
+        </div>
+      </app-user-card>
+    </ng-template>
+  </div>
 </mat-toolbar>
