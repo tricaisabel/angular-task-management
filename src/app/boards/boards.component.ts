@@ -7,7 +7,7 @@ import { BoardsService } from '../services/boards.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { BoardDialogComponent } from '../dialogs/board-dialog/board-dialog.component';
+import { BoardDialogComponent } from '../shared/dialogs/board-dialog/board-dialog.component';
 
 @Component({
   selector: 'app-boards',
