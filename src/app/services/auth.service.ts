@@ -103,7 +103,7 @@ export class AuthService {
       this.logOut();
       this.router.navigateByUrl('/');
       alert('Your session has expired. You have been logged out.');
-    }, 2000);
+    }, expirationDuration);
   }
 
   getAllUsers() {
