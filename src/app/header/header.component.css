@@ -4,6 +4,7 @@
 
 mat-toolbar {
   margin-bottom: 20px;
+  padding: 0px 10%;
 }
 
 .stickyBar {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../services/auth.service';
 import User from '../models/user.model';
 
 @Component({
@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logOut() {
     this.authService.logOut();
+    this.isOpen = false;
   }
 
   ngOnDestroy(): void {

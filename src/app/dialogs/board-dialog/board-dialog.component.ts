@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BoardsService } from 'src/app/shared/boards.service';
+import { BoardsService } from 'src/app/services/boards.service';
 
 @Component({
   selector: 'app-board-dialog',

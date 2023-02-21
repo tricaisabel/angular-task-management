@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material.module';
+import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './header/header.component';
@@ -20,11 +20,14 @@ import { DialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-team-dialog.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+} from '@angular/material/snack-bar';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth.guard';
 import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,7 @@ import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.compon
   ],
   providers: [
     MatSnackBar,
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

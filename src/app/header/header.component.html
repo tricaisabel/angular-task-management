@@ -13,6 +13,7 @@
   <button
     mat-icon-button
     cdkOverlayOrigin
+    matTooltip="User details"
     #trigger="cdkOverlayOrigin"
     (click)="isOpen = !isOpen"
   >
@@ -26,21 +27,12 @@
   >
     <app-user-card [title]="user.username" [subtitle]="user.role" *ngIf="user">
       <div fxLayout="column" fxLayoutAlign="start center">
-        <button mat-flat-button>Manage Profile</button>
-        <button mat-flat-button>Settings</button>
+        <button mat-flat-button (click)="isOpen = false">Manage Profile</button>
+        <button mat-flat-button (click)="isOpen = false">Settings</button>
         <button mat-flat-button routerLink="/" (click)="logOut()">
           Log out
         </button>
       </div>
     </app-user-card>
   </ng-template>
-
-  <!-- Info section -->
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-  >
-    <mat-icon>share</mat-icon>
-  </button>
 </mat-toolbar>

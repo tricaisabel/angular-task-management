@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth/auth.service';
-import { LoadingService } from './shared/loading-spinner/loading.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +7,9 @@ import { LoadingService } from './shared/loading-spinner/loading.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  isLoading = true;
-
-  constructor(
-    private loading: LoadingService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.isLoading = this.loading.isLoading;
     this.authService.autoAuthenticate();
   }
 }

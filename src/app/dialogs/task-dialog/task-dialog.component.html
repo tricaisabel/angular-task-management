@@ -157,7 +157,7 @@
     </div>
     <br />
 
-    <div *ngIf="editMode">
+    <div *ngIf="editMode && !templateMode">
       <p>Assigned to</p>
       <mat-form-field appearance="fill">
         <mat-label>User</mat-label>

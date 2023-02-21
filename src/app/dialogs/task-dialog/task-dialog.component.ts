@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, Observable, startWith } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
-import { BoardsService } from 'src/app/shared/boards.service';
+import { BoardsService } from 'src/app/services/boards.service';
 
 export interface TeamMember {
   username: string;

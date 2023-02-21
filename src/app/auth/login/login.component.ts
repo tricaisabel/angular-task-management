@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingService } from 'src/app/shared/loading-spinner/loading.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({

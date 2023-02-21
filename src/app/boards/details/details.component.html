@@ -25,7 +25,7 @@
         matTooltipPosition="above"
         (click)="openTeamDialog()"
       >
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>group_add</mat-icon>
       </button>
     </div>
   </div>
@@ -41,7 +41,7 @@
 
   <app-user-card
     [title]="board.createdBy.username"
-    [subtitle]="board.createdBy.role"
+    subtitle="Board creator"
   ></app-user-card>
 
   <div fxLayout="row" class="input-list">

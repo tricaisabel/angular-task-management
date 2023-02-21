@@ -3,12 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTooltip, TooltipComponent } from '@angular/material/tooltip';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ManageTeamDialogComponent } from 'src/app/dialogs/manage-team-dialog/manage-team-dialog.component';
 import { DialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
 import { Board } from 'src/app/models/board.model';
 import User from 'src/app/models/user.model';
-import { BoardsService } from 'src/app/shared/boards.service';
+import { BoardsService } from 'src/app/services/boards.service';
 
 @Component({
   selector: 'app-details',

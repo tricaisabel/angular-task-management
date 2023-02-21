@@ -3,9 +3,9 @@ import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable, startWith } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import User from 'src/app/models/user.model';
-import { BoardsService } from 'src/app/shared/boards.service';
+import { BoardsService } from 'src/app/services/boards.service';
 
 @Component({
   selector: 'app-manage-team-dialog',
@@ -59,6 +59,7 @@ export class ManageTeamDialogComponent implements OnInit {
         (user) => {
           if (user) {
             this.team.push(user);
+            this.boardService.fetchBoards();
           }
         },
         (error) => {

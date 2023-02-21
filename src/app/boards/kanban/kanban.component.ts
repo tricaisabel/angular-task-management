@@ -10,7 +10,7 @@ import { DialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.compone
 import { Board } from 'src/app/models/board.model';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
-import { BoardsService } from 'src/app/shared/boards.service';
+import { BoardsService } from 'src/app/services/boards.service';
 
 type Column = {
   id: string;
