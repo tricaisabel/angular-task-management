@@ -25,16 +25,13 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material/snack-bar';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
-import { AuthGuard } from './auth/auth.guard';
 import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     HeaderComponent,
-    LoginComponent,
-    CreateAccountComponent,
     BoardsComponent,
     DetailsComponent,
     UserCardComponent,
@@ -54,6 +51,7 @@ import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.compon
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    AuthModule,
   ],
   providers: [
     MatSnackBar,
