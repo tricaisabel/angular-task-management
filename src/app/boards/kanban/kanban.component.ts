@@ -5,9 +5,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { TaskDialogComponent } from 'src/app/shared/dialogs/task-dialog/task-dialog.component';
-import { Board } from 'src/app/models/board.model';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
 import { BoardsService } from 'src/app/services/boards.service';
