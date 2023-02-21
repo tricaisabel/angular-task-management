@@ -16,7 +16,7 @@ export interface TeamMember {
   templateUrl: './task-dialog.component.html',
   styleUrls: ['./task-dialog.component.css'],
 })
-export class DialogComponent implements OnInit {
+export class TaskDialogComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   date: FormControl;
   task: Task;
@@ -51,7 +51,7 @@ export class DialogComponent implements OnInit {
   ];
 
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<TaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private boardsService: BoardsService
   ) {}

@@ -6,7 +6,7 @@ import {
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { DialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
+import { TaskDialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
 import { Board } from 'src/app/models/board.model';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
@@ -82,7 +82,7 @@ export class KanbanComponent implements OnInit {
   }
 
   openDialog(task: Task) {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
       data: { task: { ...task }, editMode: false, team: this.team },
       width: '500px',
     });

@@ -5,7 +5,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ManageTeamDialogComponent } from 'src/app/dialogs/manage-team-dialog/manage-team-dialog.component';
-import { DialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
+import { TaskDialogComponent } from 'src/app/dialogs/task-dialog/task-dialog.component';
 import { Board } from 'src/app/models/board.model';
 import User from 'src/app/models/user.model';
 import { BoardsService } from 'src/app/services/boards.service';
@@ -55,7 +55,7 @@ export class DetailsComponent implements OnInit {
       return;
     }
 
-    this.taskDialog.open(DialogComponent, {
+    this.taskDialog.open(TaskDialogComponent, {
       data: { editMode: true, boardId: this.board.id },
       width: '500px',
     });
