@@ -102,7 +102,8 @@ export class AuthService {
     this.timer = setTimeout(() => {
       this.logOut();
       this.router.navigateByUrl('/');
-    }, expirationDuration);
+      alert('Your session has expired. You have been logged out.');
+    }, 2000);
   }
 
   getAllUsers() {
