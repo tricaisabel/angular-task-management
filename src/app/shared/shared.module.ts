@@ -9,7 +9,7 @@ import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.compon
 import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-team-dialog.component';
 import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { HeaderComponent } from './header/header.component';
-import { UserCardComponent } from '../user-card/user-card.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { UserCardComponent } from '../user-card/user-card.component';
     TaskDialogComponent,
     ManageTeamDialogComponent,
     BoardDialogComponent,
+    UserCardComponent,
   ],
   imports: [
     CommonModule,
