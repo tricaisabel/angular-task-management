@@ -57,6 +57,7 @@ export class AuthService {
       user.username,
       user.role,
       user.email,
+      user.avatarId,
       accessToken,
       expireDate
     );
@@ -76,6 +77,7 @@ export class AuthService {
       parsedUser.username,
       parsedUser.role,
       parsedUser.email,
+      parsedUser.avatarId,
       parsedUser._token,
       parsedUser._expireDate
     );

@@ -18,6 +18,7 @@ export class ManageTeamDialogComponent implements OnInit {
   myControl = new FormControl<string | User>('');
   options: User[];
   filteredOptions: Observable<User[]>;
+  prefix = 'http://localhost:3000/files/';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

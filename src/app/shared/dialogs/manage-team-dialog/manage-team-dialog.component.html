@@ -2,7 +2,12 @@
 
 <mat-selection-list>
   <mat-list-option *ngFor="let user of team">
-    <div mat-card-avatar class="user-card-image" matListItemIcon></div>
+    <div
+      mat-card-avatar
+      class="user-card-image"
+      matListItemIcon
+      [ngStyle]="{ 'background-image': 'url(' + prefix + user.avatarId + ')' }"
+    ></div>
     <div matListItemTitle>{{ user.username }}</div>
     <div matListItemLine>{{ user.role | lowercase }}</div>
   </mat-list-option>

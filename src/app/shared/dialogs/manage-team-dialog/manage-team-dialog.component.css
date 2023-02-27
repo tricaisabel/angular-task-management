@@ -1,5 +1,4 @@
 .user-card-image {
-  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
 
@@ -7,4 +6,9 @@
   min-width: 150px;
   max-width: 500px;
   width: 75%;
+}
+
+.mdc-list-item.mdc-list-item--with-two-lines .mdc-list-item__start {
+  width: 40px;
+  height: 40px;
 }
