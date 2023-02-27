@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Manage Team</h1>
 
-<mat-selection-list>
-  <mat-list-option *ngFor="let user of team">
+<mat-list role="list">
+  <mat-list-item *ngFor="let user of team">
     <div
       mat-card-avatar
       class="user-card-image"
@@ -10,8 +10,8 @@
     ></div>
     <div matListItemTitle>{{ user.username }}</div>
     <div matListItemLine>{{ user.role | lowercase }}</div>
-  </mat-list-option>
-</mat-selection-list>
+  </mat-list-item>
+</mat-list>
 
 <br />
 

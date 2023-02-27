@@ -20,7 +20,6 @@ export class DetailsComponent implements OnInit {
   board: Board | undefined;
   userSub: Subscription;
   user: User;
-  @ViewChild('tooltip') tooltip: MatTooltip;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,11 +42,6 @@ export class DetailsComponent implements OnInit {
         this.user = authUser;
       }
     });
-  }
-
-  changeTooltip() {
-    this.tooltip.message = 'Copied!';
-    this.tooltip.show();
   }
 
   openTaskDialog() {

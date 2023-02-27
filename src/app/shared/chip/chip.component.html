@@ -1,0 +1,8 @@
+<mat-chip
+  [cdkCopyToClipboard]="text"
+  matTooltip="Copy to clipboard"
+  matTooltipPosition="above"
+  #tooltip="matTooltip"
+  (click)="changeTooltip($event)"
+  >{{ text.slice(0, 10) }}</mat-chip
+>

@@ -10,6 +10,7 @@ import { ManageTeamDialogComponent } from './dialogs/manage-team-dialog/manage-t
 import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { ChipComponent } from './chip/chip.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UserCardComponent } from './user-card/user-card.component';
     ManageTeamDialogComponent,
     BoardDialogComponent,
     UserCardComponent,
+    ChipComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { UserCardComponent } from './user-card/user-card.component';
     TaskDialogComponent,
     ManageTeamDialogComponent,
     BoardDialogComponent,
+    ChipComponent,
     MaterialModule,
     FormsModule,
     FlexLayoutModule,

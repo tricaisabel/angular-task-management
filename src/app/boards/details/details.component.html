@@ -30,14 +30,7 @@
     </div>
   </div>
 
-  <mat-chip
-    [cdkCopyToClipboard]="board.id.toString()"
-    matTooltip="Copy to clipboard"
-    matTooltipPosition="above"
-    #tooltip="matTooltip"
-    (click)="changeTooltip()"
-    >{{ board.id }}</mat-chip
-  >
+  <app-chip [text]="board.id.toString()"></app-chip>
 
   <app-user-card
     [title]="board.createdBy.username"

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BoardDialogComponent } from '../shared/dialogs/board-dialog/board-dialog.component';
+import { ManageTeamDialogComponent } from '../shared/dialogs/manage-team-dialog/manage-team-dialog.component';
 
 @Component({
   selector: 'app-boards',
@@ -25,7 +26,8 @@ export class BoardsComponent implements OnInit {
     private boardsService: BoardsService,
     private router: Router,
     private authService: AuthService,
-    private boardDialog: MatDialog
+    private boardDialog: MatDialog,
+    private teamDialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.boardsService.fetchBoards();
@@ -52,6 +54,23 @@ export class BoardsComponent implements OnInit {
 
   openBoardDialog() {
     this.boardDialog.open(BoardDialogComponent, {
+      width: '500px',
+    });
+  }
+
+  viewTeam(event: any, element: any) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!element) {
+      return;
+    }
+    this.teamDialog.open(ManageTeamDialogComponent, {
+      data: {
+        team: element.team,
+        boardId: element.id,
+        isCreator: false,
+      },
       width: '500px',
     });
   }
