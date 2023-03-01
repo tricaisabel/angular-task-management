@@ -15,4 +15,11 @@ export default class User {
     }
     return this._token;
   }
+
+  get expireDate() {
+    if (this._expireDate < new Date()) {
+      return 'none';
+    }
+    return this._expireDate;
+  }
 }

@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  PreloadAllModules,
-  PreloadingStrategy,
-  RouterModule,
-  Routes,
-} from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
@@ -19,6 +14,12 @@ const routes: Routes = [
     path: 'boards',
     loadChildren: () => {
       return import('./boards/boards.module').then((m) => m.BoardsModule);
+    },
+  },
+  {
+    path: 'profile',
+    loadChildren: () => {
+      return import('./profile/profile.module').then((m) => m.ProfileModule);
     },
   },
 ];

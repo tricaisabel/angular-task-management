@@ -32,11 +32,7 @@
 
   <app-chip [text]="board.id.toString()"></app-chip>
 
-  <app-user-card
-    [title]="board.createdBy.username"
-    subtitle="Board creator"
-    [avatarId]="board.createdBy.avatarId"
-  ></app-user-card>
+  <app-user-card [user]="board.createdBy"></app-user-card>
 
   <div fxLayout="row" class="input-list">
     <mat-button-toggle-group>

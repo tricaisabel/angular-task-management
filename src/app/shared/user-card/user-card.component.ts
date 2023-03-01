@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import User from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user-card',
@@ -7,15 +9,22 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./user-card.component.css'],
 })
 export class UserCardComponent implements OnInit {
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() avatarId: string;
+  @Input('user') user: User;
   @ViewChild('avatar') avatarImage: any;
   imagePath: any;
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
-    if (this.avatarId) {
-      this.imagePath = `http://localhost:3000/files/${this.avatarId}`;
+    if (this.user) {
+      this.imagePath = `http://localhost:3000/files/${this.user.avatarId}`;
     }
+  }
+
+  visitProfile(event: any) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    this.router.navigate(['profile', this.user.id]);
   }
 }

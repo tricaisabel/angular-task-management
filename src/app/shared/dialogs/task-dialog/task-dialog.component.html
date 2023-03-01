@@ -135,25 +135,16 @@
     >
       <div class="section">
         <p>Created by</p>
-        <app-user-card
-          [title]="task.createdBy.username"
-          [subtitle]="task.createdBy.role"
-          [avatarId]="task.createdBy.avatarId"
-        ></app-user-card>
+        <app-user-card [user]="task.createdBy"></app-user-card>
       </div>
 
       <div class="section">
         <p>Assigned to</p>
         <app-user-card
           *ngIf="task.assignedTo"
-          [title]="task.assignedTo.username"
-          [subtitle]="task.assignedTo.role"
+          [user]="task.assignedTo"
         ></app-user-card>
-        <app-user-card
-          *ngIf="!task.assignedTo"
-          title="Unassigned"
-          subtitle=""
-        ></app-user-card>
+        <p *ngIf="!task.assignedTo">No one</p>
       </div>
     </div>
     <br />

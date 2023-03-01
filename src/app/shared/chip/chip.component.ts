@@ -4,7 +4,6 @@ import { MatTooltip } from '@angular/material/tooltip';
 @Component({
   selector: 'app-chip',
   templateUrl: './chip.component.html',
-  styleUrls: ['./chip.component.css'],
 })
 export class ChipComponent {
   @ViewChild('tooltip') tooltip: MatTooltip;

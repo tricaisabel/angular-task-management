@@ -5,6 +5,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import User from 'src/app/models/user.model';
 import { BoardsService } from 'src/app/services/boards.service';
+import { taskTypes, statusTypes, priorityTypes } from 'src/app/models/types';
 
 export interface TeamMember {
   username: string;
@@ -24,31 +25,15 @@ export class TaskDialogComponent implements OnInit {
   editMode: boolean = false;
   assignedToId: string;
 
+  //types
+  taskTypes = taskTypes;
+  statusTypes = statusTypes;
+  priorityTypes = priorityTypes;
+
   //autocomplete input
   myControl = new FormControl<string | TeamMember>('');
   options: TeamMember[];
   filteredOptions: Observable<TeamMember[]>;
-
-  taskTypes = [
-    { viewValue: 'Bug', value: 'BUG' },
-    { viewValue: 'User Story', value: 'USER_STORY' },
-    { viewValue: 'Issue', value: 'ISSUE' },
-    { viewValue: 'Epic', value: 'EPIC' },
-  ];
-
-  statusTypes = [
-    { viewValue: 'New', value: 'NEW' },
-    { viewValue: 'Active', value: 'ACTIVE' },
-    { viewValue: 'Done', value: 'DONE' },
-    { viewValue: 'Blocked', value: 'BLOCKED' },
-  ];
-
-  priorityTypes = [
-    { viewValue: 'Low', value: 'LOW' },
-    { viewValue: 'Medium', value: 'MEDIUM' },
-    { viewValue: 'High', value: 'HIGH' },
-    { viewValue: 'Critical', value: 'CRITICAL' },
-  ];
 
   constructor(
     public dialogRef: MatDialogRef<TaskDialogComponent>,

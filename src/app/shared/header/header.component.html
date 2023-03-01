@@ -26,12 +26,7 @@
       [cdkConnectedOverlayOrigin]="trigger"
       [cdkConnectedOverlayOpen]="isOpen"
     >
-      <app-user-card
-        [title]="user.username"
-        [subtitle]="user.role"
-        [avatarId]="user.avatarId"
-        *ngIf="user"
-      >
+      <app-user-card [user]="user" *ngIf="user">
         <div fxLayout="column" fxLayoutAlign="start center">
           <button mat-flat-button (click)="isOpen = false">
             Manage Profile

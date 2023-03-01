@@ -111,4 +111,14 @@ export class AuthService {
   getAllUsers() {
     return this.http.get<User[]>('http://localhost:3000/auth/users');
   }
+
+  getUserById(id: string) {
+    return this.http.get<User>(`http://localhost:3000/auth/users/${id}`);
+  }
+
+  changeAvatar(uploadData: any, id: string) {
+    this.http
+      .post<User>('http://localhost:3000/auth/avatar', uploadData)
+      .subscribe((user) => {});
+  }
 }
