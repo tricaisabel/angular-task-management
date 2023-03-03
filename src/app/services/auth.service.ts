@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Subject, tap } from 'rxjs';
 import User from '../models/user.model';
 
 interface newAccount {
@@ -14,6 +14,7 @@ interface newAccount {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   authUser = new BehaviorSubject<User | null>(null);
+  currentUser = new Subject<User>();
   timer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -119,6 +120,16 @@ export class AuthService {
   changeAvatar(uploadData: any, id: string) {
     this.http
       .post<User>('http://localhost:3000/auth/avatar', uploadData)
-      .subscribe((user) => {});
+      .subscribe((user) => {
+        this.currentUser.next(user);
+      });
+  }
+
+  getAvatarById(id: string) {
+    this.getUserById(id).subscribe((user) => {
+      if (user) {
+        this.currentUser.next(user);
+      }
+    });
   }
 }

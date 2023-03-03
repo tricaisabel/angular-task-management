@@ -5,6 +5,8 @@ import { roleTypes } from '../models/types';
 import { AuthService } from '../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +15,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
   backBtnText = 'Go Back';
-  backBtnLink = '/boards';
   editMode = false;
   user: User;
   imagePath: string;
@@ -21,28 +22,26 @@ export class ProfileComponent implements OnInit {
   id: string;
 
   constructor(
+    private _location: Location,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
-    this.authService.authUser.subscribe((user) => {
-      if (user) {
-        if (user.id === this.id) {
-          this.user = user;
-          this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
-          this.editMode = true;
-        } else {
-          this.authService.getUserById(this.id).subscribe((user) => {
-            this.user = user;
-            this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
-            this.editMode = false;
-          });
-        }
-      }
+
+    this.authService.getAvatarById(this.id);
+
+    this.authService.currentUser.subscribe((user) => {
+      this.user = user;
+      this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
+
+      this.authService.authUser.subscribe((authUser) => {
+        this.editMode = authUser && authUser.id === this.user.id ? true : false;
+      });
     });
   }
 
@@ -54,5 +53,10 @@ export class ProfileComponent implements OnInit {
     uploadData.append('file', selectedFile, selectedFile.name);
 
     this.authService.changeAvatar(uploadData, this.id);
+    this._snackBar.open('The new avatar was successfully updated!');
+  }
+
+  backClick() {
+    this._location.back();
   }
 }
