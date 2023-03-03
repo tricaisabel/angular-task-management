@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import User from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,20 +13,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isOpen = false;
   userSub: Subscription;
   user: User | null;
+  imagePath: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.authUser.subscribe((authUser) => {
+    this.authService.authUser.subscribe((authUser) => {
       if (authUser) {
         this.user = authUser;
       }
+    });
+
+    this.authService.currentUser.subscribe((user) => {
+      this.user = user;
+      this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
     });
   }
 
   logOut() {
     this.authService.logOut();
     this.isOpen = false;
+    this.router.navigateByUrl('/');
   }
 
   ngOnDestroy(): void {

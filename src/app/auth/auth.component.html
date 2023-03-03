@@ -1,5 +1,13 @@
 <div id="auth-container" fxLayout="row" fxLayoutAlign="space-between start">
-  <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="50px">
+  <div
+    class="main"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    fxLayoutGap="50px"
+  >
+    <br />
+    <br />
+
     <h1>Welcome to Task Overflow</h1>
 
     <img
@@ -9,16 +17,48 @@
       width="400px"
     />
 
-    <p class="description">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce odio nulla,
-      tincidunt a est ac, semper iaculis augue. Morbi semper a justo ut
-      accumsan. In in ex non velit feugiat ultricies. Aliquam mattis magna at
-      lobortis malesuada. Maecenas vulputate id libero sit amet pulvinar. Donec
-      luctus porta ante ac facilisis. Curabitur dictum ligula vitae mi pulvinar
-      consectetur vel vitae dui. Donec vehicula maximus varius. Lorem ipsum
-      dolor sit amet, consectetur adipiscing elit.
-    </p>
+    <div class="description">
+      Hello everyone! This is a practice app developed by
+      <span class="highlight-blue">Isabel Trica</span> on her journey to learn
+      <span class="highlight-blue">Angular</span>,
+      <span class="highlight-blue">Nest.js</span> and
+      <span class="highlight-blue">Postgresql</span>.
+    </div>
+
+    <br />
+    <br />
+
+    <img
+      mat-card-image
+      src="../../assets/20943573.jpg"
+      alt="Security illustration"
+      width="400px"
+    />
+
+    <div class="description">
+      <ul>
+        <li>
+          Create, sort and filter
+          <span class="highlight-blue">boards</span>
+        </li>
+        <li>Any user can create their own boards that they can later manage</li>
+        <li>
+          Add, assign and edit
+          <span class="highlight-blue">tasks</span>
+        </li>
+        <li>
+          Tasks can have one of the following types: Bug, User Story, Issue
+        </li>
+        <li>
+          Track progress. The board can be visualised in the
+          <span class="highlight-blue">ListView</span> or
+          <span class="highlight-blue">Kanban</span>
+          mode
+        </li>
+      </ul>
+    </div>
   </div>
+
   <div id="card-container" fxLayout="column" fxLayoutAlign="center center">
     <mat-card>
       <mat-tab-group mat-card-content>
