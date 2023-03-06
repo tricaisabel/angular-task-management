@@ -118,11 +118,10 @@ export class AuthService {
   }
 
   changeAvatar(uploadData: any, id: string) {
-    this.http
-      .post<User>('http://localhost:3000/auth/avatar', uploadData)
-      .subscribe((user) => {
-        this.currentUser.next(user);
-      });
+    return this.http.post<User>(
+      'http://localhost:3000/auth/avatar',
+      uploadData
+    );
   }
 
   getAvatarById(id: string) {
