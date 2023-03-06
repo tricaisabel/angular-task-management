@@ -11,6 +11,7 @@ import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component
 import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { ChipComponent } from './chip/chip.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ChipComponent } from './chip/chip.component';
     DragDropModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    TextFieldModule,
   ],
   exports: [
     //shared components

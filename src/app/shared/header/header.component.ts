@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.user = user;
       this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
     });
+    console.log(this.user);
   }
+  openInfoDialog() {}
 
   logOut() {
     this.authService.logOut();

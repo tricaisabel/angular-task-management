@@ -4,7 +4,7 @@ import {
   MatSnackBar,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material/snack-bar';
-import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { AuthInterceptor } from './services/auth-interceptor.service';
 
 @NgModule({
   providers: [

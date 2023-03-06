@@ -1,13 +1,18 @@
 <mat-toolbar color="primary" class="stickyBar">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-  >
+  <button mat-icon-button class="example-icon">
     <mat-icon>check_circle_outline</mat-icon>
   </button>
   <span>Task Overflow 2.0</span>
   <span class="example-spacer"></span>
+
+  <button
+    mat-icon-button
+    cdkOverlayOrigin
+    matTooltip="Info"
+    (click)="openInfoDialog()"
+  >
+    <mat-icon>help_outline</mat-icon>
+  </button>
 
   <!-- Profile button -->
   <div *ngIf="user">

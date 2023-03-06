@@ -1,0 +1,40 @@
+.main-title {
+  margin-top: 40px;
+}
+
+.description-text {
+  text-align: justified;
+  color: grey;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.description-box {
+  width: 45%;
+}
+
+.highlight-red {
+  font-weight: 500;
+  color: #ff746a;
+}
+
+.highlight-blue {
+  font-weight: 500;
+  color: #5961f4;
+}
+
+mat-tab {
+  height: 100%;
+}
+
+button {
+  width: 250px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li:not(:last-child) {
+  margin-bottom: 5px;
+}

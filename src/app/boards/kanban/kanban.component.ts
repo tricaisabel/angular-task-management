@@ -80,7 +80,7 @@ export class KanbanComponent implements OnInit {
   }
 
   openDialog(task: Task) {
-    const dialogRef = this.dialog.open(TaskDialogComponent, {
+    this.dialog.open(TaskDialogComponent, {
       data: { task: { ...task }, editMode: false, team: this.team },
       width: '500px',
     });
