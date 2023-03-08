@@ -12,9 +12,8 @@
     [(selectedIndex)]="tabIndex"
     mat-stretch-tabs="false"
     mat-align-tabs="center"
-    headerPosition="below"
   >
-    <mat-tab label="">
+    <mat-tab label="Welcome">
       <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="50px">
         <h1 class="main-title">Welcome to Task Overflow!</h1>
         <img
@@ -25,8 +24,8 @@
 
         <div class="description-box">
           <div class="description-text">
-            Hello everyone! This is a practice app developed by
-            <span class="highlight-blue">Isabel Trica</span> on her to learn
+            Hello everyone! This is a practice app developed by me on my way to
+            learning
             <span class="highlight-blue">Angular</span>,
             <span class="highlight-blue">Nest.js</span> and
             <span class="highlight-blue">Postgresql</span>.
@@ -41,14 +40,18 @@
           <button mat-flat-button color="primary" routerLink="/login">
             Log In
           </button>
-          <button mat-flat-button color="primary" routerLink="/create-account">
+          <button
+            mat-flat-button
+            style="background-color: #fe7062; color: white"
+            routerLink="/create-account"
+          >
             Create Account
           </button>
         </div>
       </div>
     </mat-tab>
 
-    <mat-tab label="">
+    <mat-tab label="Features">
       <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="50px">
         <h1 class="main-title">What you can do</h1>
         <img
@@ -85,7 +88,7 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="">
+    <mat-tab label="Technical">
       <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="50px">
         <h1 class="main-title">Technical Features</h1>
         <img
@@ -94,32 +97,36 @@
           width="400px"
         />
 
-        <ul class="description-text">
-          <li>
-            <span class="highlight-blue">Lazy loading</span> - for fast
-            rendering of the page
-          </li>
-          <li>
-            <span class="highlight-blue">Route protection</span> - agains
-            unauthorized users
-          </li>
-          <li>
-            <span class="highlight-blue">File Management</span> - all images are
-            stored safely on a server
-          </li>
-          <li>
-            <span class="highlight-blue">Auto-login</span> - users stay logged
-            in when refreshing the page
-          </li>
-          <li>
-            <span class="highlight-blue">Auto-logout</span> - users are
-            automatically logged out after 1 hour
-          </li>
-          <li>
-            <span class="highlight-blue">Drag and Drop Cdk</span> - used for the
-            Kanban Board
-          </li>
-        </ul>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="30px">
+          <ul class="description-text">
+            <li>
+              <span class="highlight-blue">Lazy loading</span> - for fast
+              rendering of the page
+            </li>
+            <li>
+              <span class="highlight-blue">Route protection</span> - agains
+              unauthorized users
+            </li>
+            <li>
+              <span class="highlight-blue">File Management</span> - all images
+              are stored safely on a server
+            </li>
+          </ul>
+          <ul class="description-text">
+            <li>
+              <span class="highlight-red">Auto-login</span> - users stay logged
+              in when refreshing the page
+            </li>
+            <li>
+              <span class="highlight-red">Auto-logout</span> - users are
+              automatically logged out after 1 hour
+            </li>
+            <li>
+              <span class="highlight-red">Drag and Drop Cdk</span> - used for
+              the Kanban Board
+            </li>
+          </ul>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>

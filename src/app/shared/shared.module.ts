@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { ChipComponent } from './chip/chip.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     BoardDialogComponent,
     UserCardComponent,
     ChipComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     MatNativeDateModule,
     ReactiveFormsModule,
     TextFieldModule,
+    RouterModule,
   ],
   exports: [
     //shared components
@@ -41,6 +45,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     ManageTeamDialogComponent,
     BoardDialogComponent,
     ChipComponent,
+    FooterComponent,
     MaterialModule,
     FormsModule,
     FlexLayoutModule,

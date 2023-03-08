@@ -15,7 +15,7 @@
 
 .highlight-red {
   font-weight: 500;
-  color: #ff746a;
+  color: #fe7062;
 }
 
 .highlight-blue {
@@ -39,8 +39,8 @@ li:not(:last-child) {
   margin-bottom: 5px;
 }
 
-mat-tab-labels {
-  display: none;
+.mat-mdc-tab-header {
+  margin-top: 20px !important;
 }
 
 mat-tab-group {
