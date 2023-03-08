@@ -14,16 +14,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   user: User | null;
   imagePath: string;
+  id: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.authUser.subscribe((authUser) => {
       if (authUser) {
-        this.user = authUser;
+        this.id = authUser.id;
+        this.authService.getAvatarById(this.id);
+
+        this.authService.currentUser.subscribe((user) => {
+          this.user = user;
+          this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
+        });
       }
     });
-    console.log(this.user);
   }
   openInfoDialog() {}
 
