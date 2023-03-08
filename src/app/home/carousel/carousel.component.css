@@ -38,3 +38,11 @@ ul {
 li:not(:last-child) {
   margin-bottom: 5px;
 }
+
+mat-tab-labels {
+  display: none;
+}
+
+mat-tab-group {
+  width: 100%;
+}
