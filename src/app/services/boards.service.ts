@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Board } from '../models/board.model';
 import { Task } from '../models/task.model';
 import User from '../models/user.model';
+import { taskTypes, statusTypes, priorityTypes } from 'src/app/models/types';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsService {
@@ -91,6 +92,24 @@ export class BoardsService {
         return 'description';
       default:
         return 'help_outline';
+    }
+  }
+
+  getName(type: string, value: string) {
+    switch (type) {
+      case 'type':
+        const type = taskTypes.find((type) => type.value === value);
+        return type?.viewValue;
+      case 'status':
+        const status = statusTypes.find((status) => status.value === value);
+        return status?.viewValue;
+      case 'priority':
+        const priority = priorityTypes.find(
+          (priority) => priority.value === value
+        );
+        return priority?.viewValue;
+      default:
+        return 'none';
     }
   }
 }

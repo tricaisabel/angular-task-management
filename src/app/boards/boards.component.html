@@ -2,16 +2,6 @@
 
 <div fxLayout="row" fxLayoutAlign="space-between">
   <h1>Your boards</h1>
-
-  <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Ex. board"
-      #input
-    />
-  </mat-form-field>
   
   <button
     mat-fab
@@ -25,8 +15,17 @@
 </div>
 
 <br>
+<mat-form-field>
+  <mat-label>Filter boards</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ex. board"
+    #input
+  />
+</mat-form-field>
 
-<div>
+<div class="mat-elevation-z2">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -84,7 +83,7 @@
 
   <mat-paginator
     [pageSizeOptions]="[4]"
-    aria-label="Select page of users"
+    aria-label="Select boards per page"
   ></mat-paginator>
 </div>
 

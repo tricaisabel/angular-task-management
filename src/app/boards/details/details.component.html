@@ -44,6 +44,7 @@
   </div>
 
   <app-kanban *ngIf="kanban.checked" [boardId]="id"></app-kanban>
+  <app-listview *ngIf="!kanban.checked" [board]="board"></app-listview>
 </div>
 
 <ng-template #boardNotFound>

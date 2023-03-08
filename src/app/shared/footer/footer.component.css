@@ -23,7 +23,7 @@ footer {
   flex-direction: row;
   padding: 15px 0px;
   background: #9c9ea0;
-  border-top: aliceblue 5px solid;
+  border-top: rgb(231, 231, 231) 5px solid;
 }
 
 p,
@@ -103,7 +103,7 @@ mat-icon {
 }
 
 .wrapper .linkedin:hover {
-  background: #5961f4;
+  background: #3f51b5;
   color: aliceblue;
 }
 

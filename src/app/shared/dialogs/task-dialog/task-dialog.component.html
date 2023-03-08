@@ -1,7 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
-  <h1 mat-dialog-title>
-    <mat-icon>{{ getIcon() }}</mat-icon> {{ task.type | titlecase }}
-  </h1>
+  <div
+    style="margin: 15px"
+    mat-dialog-title
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="15px"
+  >
+    <mat-icon>{{ getIcon() }}</mat-icon>
+    <div>{{ getName("type", task.type) }}</div>
+  </div>
 
   <button
     mat-icon-button

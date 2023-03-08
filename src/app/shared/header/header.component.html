@@ -30,6 +30,9 @@
       cdkConnectedOverlay
       [cdkConnectedOverlayOrigin]="trigger"
       [cdkConnectedOverlayOpen]="isOpen"
+      (backdropClick)="isOpen = !isOpen"
+      [cdkConnectedOverlayHasBackdrop]="isOpen"
+      [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop-cs'"
     >
       <app-user-card [user]="user" *ngIf="user">
         <div fxLayout="column" fxLayoutAlign="start center">

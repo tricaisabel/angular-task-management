@@ -24,10 +24,10 @@ type Column = {
 export class KanbanComponent implements OnInit {
   @Input() boardId: string;
   columns: Column[] = [
-    { id: '1', name: 'NEW', tasks: [] },
-    { id: '2', name: 'ACTIVE', tasks: [] },
-    { id: '3', name: 'DONE', tasks: [] },
-    { id: '4', name: 'BLOCKED', tasks: [] },
+    { id: '1', name: 'New', tasks: [] },
+    { id: '2', name: 'Active', tasks: [] },
+    { id: '3', name: 'Done', tasks: [] },
+    { id: '4', name: 'Blocked', tasks: [] },
   ];
   team: User[];
 
@@ -46,7 +46,7 @@ export class KanbanComponent implements OnInit {
 
       board.tasks.forEach((task) => {
         this.columns.forEach((column) => {
-          if (task.status === column.name) {
+          if (task.status === column.name.toUpperCase()) {
             column.tasks.push(task);
           }
         });
@@ -74,7 +74,8 @@ export class KanbanComponent implements OnInit {
       );
       //change status
       const taskId = event.container.data[event.currentIndex].id;
-      const newStatus = this.columns[+event.container.id - 1].name;
+      const newStatus =
+        this.columns[+event.container.id - 1].name.toUpperCase();
       this.boardsService.changeTaskStatus(taskId, newStatus);
     }
   }

@@ -87,6 +87,10 @@ export class TaskDialogComponent implements OnInit {
     return this.boardsService.getIconByType(this.task);
   }
 
+  getName(type: string, value: string) {
+    return this.boardsService.getName(type, value);
+  }
+
   private _filter(value: string) {
     const filterValue = value.toLowerCase();
 
