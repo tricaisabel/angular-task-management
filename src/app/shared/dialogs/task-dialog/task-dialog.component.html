@@ -1,13 +1,15 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+<div fxLayout="row" fxLayoutAlign="space-between center">
   <div
-    style="margin: 15px"
+    fxFlex="95"
+    class="dialog-header"
     mat-dialog-title
     fxLayout="row"
-    fxLayoutAlign="start center"
+    fxLayoutAlign="center center"
     fxLayoutGap="15px"
   >
     <mat-icon>{{ getIcon() }}</mat-icon>
     <div>{{ getName("type", task.type) }}</div>
+    <app-chip [text]="task.id"></app-chip>
   </div>
 
   <button
@@ -22,160 +24,162 @@
 
 <div mat-dialog-content>
   <form (ngSubmit)="onSubmit()" #f="ngForm">
-    <div fxLayout="column" fxLayoutAlign="center">
-      <!-- Title input -->
-      <p>Title</p>
-      <mat-form-field width="100%">
-        <input
-          matInput
-          placeholder="Title"
-          [ngClass]="{ 'disabled-class': !editMode }"
-          [disabled]="!editMode"
-          ngModel
-          [(ngModel)]="task.title"
-          name="title"
-        />
-      </mat-form-field>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-around"
+      fxLayoutGap="60px"
+      class="main-container"
+    >
+      <div fxFlex="30" fxLayout="column" fxLayoutAlign="center">
+        <!-- Title input -->
+        <p>Title</p>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Title"
+            [ngClass]="{ 'disabled-class': !editMode }"
+            [disabled]="!editMode"
+            ngModel
+            [(ngModel)]="task.title"
+            name="title"
+          />
+        </mat-form-field>
 
-      <!-- Description area -->
-      <p>Description</p>
-      <mat-form-field width="100%">
-        <textarea
-          matInput
-          placeholder="Description"
-          [ngClass]="{ 'disabled-class': !editMode }"
-          [disabled]="!editMode"
-          ngModel
-          [(ngModel)]="task.description"
-          name="description"
-          required
-        ></textarea>
-      </mat-form-field>
+        <!-- Deadline -->
+        <p>Deadline</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [disabled]="!editMode"
+            [ngClass]="{ 'disabled-class': !editMode }"
+            name="deadline"
+            ngModel
+            [(ngModel)]="task.deadline"
+            required
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-      <p>Priority</p>
-      <mat-form-field>
-        <select
-          matNativeControl
-          name="priority"
-          [disabled]="!editMode"
-          [ngClass]="{ 'disabled-class': !editMode }"
-          ngModel
-          [(ngModel)]="task.priority"
-          required
-        >
-          <option
-            *ngFor="let priority of priorityTypes"
-            [value]="priority.value"
-          >
-            {{ priority.viewValue }}
-          </option>
-        </select>
-      </mat-form-field>
-
-      <!-- Type select -->
-      <p>Type</p>
-      <mat-form-field>
-        <select
-          matNativeControl
-          name="type"
-          [disabled]="!editMode"
-          [ngClass]="{ 'disabled-class': !editMode }"
-          ngModel
-          [(ngModel)]="task.type"
-          required
-        >
-          <option *ngFor="let type of taskTypes" [value]="type.value">
-            {{ type.viewValue }}
-          </option>
-        </select>
-      </mat-form-field>
-
-      <!-- Status select (new by default) -->
-      <div *ngIf="!templateMode">
-        <p>Status</p>
+        <p>Priority</p>
         <mat-form-field>
           <select
             matNativeControl
-            name="status"
+            name="priority"
             [disabled]="!editMode"
             [ngClass]="{ 'disabled-class': !editMode }"
             ngModel
-            [(ngModel)]="task.status"
+            [(ngModel)]="task.priority"
             required
           >
-            <option *ngFor="let status of statusTypes" [value]="status.value">
-              {{ status.viewValue }}
+            <option
+              *ngFor="let priority of priorityTypes"
+              [value]="priority.value"
+            >
+              {{ priority.viewValue }}
             </option>
           </select>
         </mat-form-field>
-      </div>
-    </div>
 
-    <!-- Deadline -->
-    <p>Deadline</p>
-    <mat-form-field appearance="fill">
-      <input
-        matInput
-        [matDatepicker]="picker"
-        [disabled]="!editMode"
-        [ngClass]="{ 'disabled-class': !editMode }"
-        name="deadline"
-        ngModel
-        [(ngModel)]="task.deadline"
-        required
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <div
-      class="view-info"
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
-      *ngIf="!editMode"
-    >
-      <div class="section">
-        <p>Created by</p>
-        <app-user-card [user]="task.createdBy"></app-user-card>
-      </div>
-
-      <div class="section">
-        <p>Assigned to</p>
-        <app-user-card
-          *ngIf="task.assignedTo"
-          [user]="task.assignedTo"
-        ></app-user-card>
-        <p *ngIf="!task.assignedTo">No one</p>
-      </div>
-    </div>
-    <br />
-
-    <div *ngIf="editMode && !templateMode">
-      <p>Assigned to</p>
-      <mat-form-field appearance="fill">
-        <mat-label>User</mat-label>
-        <input
-          type="text"
-          placeholder="Pick one"
-          aria-label="User"
-          matInput
-          [formControl]="myControl"
-          [matAutocomplete]="auto"
-          required
-          name="assignedTo"
-        />
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option
-            *ngFor="let option of filteredOptions | async"
-            [value]="option.id"
+        <!-- Type select -->
+        <p>Type</p>
+        <mat-form-field>
+          <select
+            matNativeControl
+            name="type"
+            [disabled]="!editMode"
+            [ngClass]="{ 'disabled-class': !editMode }"
+            ngModel
+            [(ngModel)]="task.type"
+            required
           >
-            {{ option.username }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+            <option *ngFor="let type of taskTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </option>
+          </select>
+        </mat-form-field>
+
+        <!-- Status select (new by default) -->
+        <div *ngIf="!templateMode">
+          <p>Status</p>
+          <mat-form-field>
+            <select
+              matNativeControl
+              name="status"
+              [disabled]="!editMode"
+              [ngClass]="{ 'disabled-class': !editMode }"
+              ngModel
+              [(ngModel)]="task.status"
+              required
+            >
+              <option *ngFor="let status of statusTypes" [value]="status.value">
+                {{ status.viewValue }}
+              </option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="70" fxLayout="column">
+        <!-- Description area -->
+        <p>Description</p>
+        <mat-form-field>
+          <textarea
+            matInput
+            placeholder="Description"
+            [ngClass]="{ 'disabled-class': !editMode }"
+            [disabled]="!editMode"
+            ngModel
+            [(ngModel)]="task.description"
+            name="description"
+            required
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="8"
+          ></textarea>
+        </mat-form-field>
+
+        <div class="section">
+          <p>Created by</p>
+          <app-user-card [user]="task.createdBy"></app-user-card>
+        </div>
+
+        <div class="section" *ngIf="!editMode">
+          <p>Assigned to</p>
+          <app-user-card
+            *ngIf="task.assignedTo"
+            [user]="task.assignedTo"
+          ></app-user-card>
+          <p *ngIf="!task.assignedTo">No one</p>
+        </div>
+
+        <div *ngIf="editMode && !templateMode">
+          <p>Assigned to</p>
+          <mat-form-field appearance="fill">
+            <mat-label>User</mat-label>
+            <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="User"
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+              required
+              name="assignedTo"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option.id"
+              >
+                {{ option.username }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
 
     <div mat-dialog-actions align="end">

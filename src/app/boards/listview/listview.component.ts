@@ -64,7 +64,7 @@ export class ListviewComponent implements OnInit {
   showDetail(task: Task) {
     this.dialog.open(TaskDialogComponent, {
       data: { task: { ...task }, editMode: false, team: this.board.team },
-      width: '500px',
+      width: '100%',
     });
   }
 }

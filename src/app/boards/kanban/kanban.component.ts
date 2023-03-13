@@ -83,7 +83,7 @@ export class KanbanComponent implements OnInit {
   openDialog(task: Task) {
     this.dialog.open(TaskDialogComponent, {
       data: { task: { ...task }, editMode: false, team: this.team },
-      width: '500px',
+      width: '100%',
     });
   }
 
