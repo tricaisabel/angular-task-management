@@ -22,7 +22,6 @@ export class BoardsService {
       .get<Board[]>('http://localhost:3000/boards')
       .subscribe((boards) => {
         this.boardsChanged.next(boards);
-        console.log('fetched');
       });
   }
 

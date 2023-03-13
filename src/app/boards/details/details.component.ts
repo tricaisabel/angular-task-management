@@ -52,9 +52,6 @@ export class DetailsComponent implements OnInit {
     this.taskDialog.open(TaskDialogComponent, {
       data: { editMode: true, boardId: this.board.id },
       width: '100%',
-      maxWidth: '100%',
-      height: '100%',
-      maxHeight: '100%',
     });
   }
 
