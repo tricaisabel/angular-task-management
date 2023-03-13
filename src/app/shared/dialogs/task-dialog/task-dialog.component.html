@@ -61,7 +61,6 @@
           [ngClass]="{ 'disabled-class': !editMode }"
           ngModel
           [(ngModel)]="task.priority"
-          name="priority"
           required
         >
           <option
@@ -83,7 +82,6 @@
           [ngClass]="{ 'disabled-class': !editMode }"
           ngModel
           [(ngModel)]="task.type"
-          name="type"
           required
         >
           <option *ngFor="let type of taskTypes" [value]="type.value">
@@ -103,7 +101,6 @@
             [ngClass]="{ 'disabled-class': !editMode }"
             ngModel
             [(ngModel)]="task.status"
-            name="status"
             required
           >
             <option *ngFor="let status of statusTypes" [value]="status.value">
@@ -167,10 +164,8 @@
           matInput
           [formControl]="myControl"
           [matAutocomplete]="auto"
-          name="assignedTo"
-          ngModel
           required
-          [(ngModel)]="assignedToId"
+          name="assignedTo"
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option

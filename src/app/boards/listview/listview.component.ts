@@ -1,6 +1,4 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -16,7 +14,8 @@ import { TaskDialogComponent } from 'src/app/shared/dialogs/task-dialog/task-dia
   styleUrls: ['./listview.component.css'],
 })
 export class ListviewComponent implements OnInit {
-  @Input() board: Board;
+  @Input() boardId: string;
+  board: Board;
   displayedColumns: string[] = [
     'id',
     'title',
@@ -36,14 +35,18 @@ export class ListviewComponent implements OnInit {
   constructor(public dialog: MatDialog, private boardsService: BoardsService) {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.board.tasks);
-    console.log(this.board.tasks);
+    this.boardsService.fetchBoards();
+    this.boardsService.boardsChanged.subscribe((boards) => {
+      const board = boards.find((board) => board.id === this.boardId);
+      if (!board) return;
+      this.dataSource = new MatTableDataSource(board.tasks);
+      this.board = board;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  ngAfterViewInit() {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

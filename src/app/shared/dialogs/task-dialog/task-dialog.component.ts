@@ -23,7 +23,6 @@ export class TaskDialogComponent implements OnInit {
   task: Task;
   templateMode: boolean = false;
   editMode: boolean = false;
-  assignedToId: string;
 
   //types
   taskTypes = taskTypes;
@@ -51,9 +50,11 @@ export class TaskDialogComponent implements OnInit {
     } else {
       this.task = this.data.task;
       this.templateMode = false;
-      this.assignedToId = this.data.task.assignedTo
-        ? this.data.task.assignedTo.id
-        : 'Unassigned';
+      this.myControl.setValue(
+        this.data.task.assignedTo
+          ? this.data.task.assignedTo.username
+          : 'Unassigned'
+      );
     }
 
     this.options = [];
@@ -75,11 +76,13 @@ export class TaskDialogComponent implements OnInit {
 
   onSubmit() {
     const form = this.form.value;
-
-    if (this.templateMode === true) {
+    console.log(form);
+    const assignedId = this.myControl.getRawValue();
+    const sAssignedId = assignedId?.toString();
+    if (this.templateMode === true && sAssignedId) {
       this.boardsService.newTask(form, this.data.boardId);
     } else {
-      this.boardsService.editTask(this.task.id, form, this.assignedToId);
+      this.boardsService.editTask(this.task.id, form, sAssignedId!);
     }
   }
 
