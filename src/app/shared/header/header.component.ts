@@ -26,7 +26,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.authService.currentUser.subscribe((user) => {
           this.user = user;
-          this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
+          if (this.user.avatarId !== null) {
+            this.imagePath = `http://localhost:3000/files/${this.user.avatarId}`;
+          } else {
+            this.imagePath =
+              'http://localhost:3000/files/e8bc2380-fc64-44a2-932b-5b6f221904f9';
+          }
         });
       }
     });

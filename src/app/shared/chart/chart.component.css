@@ -1,0 +1,5 @@
+#chart_div circle:nth-child(3) {
+  fill: #3f51b5;
+  stroke: white;
+  stroke-width: 6px;
+}

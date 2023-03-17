@@ -29,6 +29,11 @@ export class ManageTeamDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.team = this.data.team;
+    this.team.forEach((user) => {
+      if (!user.avatarId)
+        user.avatarId = 'e8bc2380-fc64-44a2-932b-5b6f221904f9';
+    });
+
     this.authService.getAllUsers().subscribe((users) => {
       this.options = users;
 

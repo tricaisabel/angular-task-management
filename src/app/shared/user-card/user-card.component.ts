@@ -16,8 +16,11 @@ export class UserCardComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    if (this.user) {
+    if (this.user.avatarId !== null) {
       this.imagePath = `http://localhost:3000/files/${this.user.avatarId}`;
+    } else {
+      this.imagePath =
+        'http://localhost:3000/files/e8bc2380-fc64-44a2-932b-5b6f221904f9';
     }
   }
 

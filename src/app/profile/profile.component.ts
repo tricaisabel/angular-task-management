@@ -36,9 +36,14 @@ export class ProfileComponent implements OnInit {
     this.authService.getAvatarById(this.id);
 
     this.authService.currentUser.subscribe((user) => {
+      console.log(user);
       this.user = user;
-      this.imagePath = `http://localhost:3000/files/${user.avatarId}`;
-
+      if (this.user.avatarId !== null) {
+        this.imagePath = `http://localhost:3000/files/${this.user.avatarId}`;
+      } else {
+        this.imagePath =
+          'http://localhost:3000/files/e8bc2380-fc64-44a2-932b-5b6f221904f9';
+      }
       this.authService.authUser.subscribe((authUser) => {
         this.editMode = authUser && authUser.id === this.user.id ? true : false;
       });
