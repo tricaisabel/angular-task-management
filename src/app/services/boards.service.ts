@@ -98,7 +98,12 @@ export class BoardsService {
     switch (type) {
       case 'type':
         const type = taskTypes.find((type) => type.value === value);
-        return type?.viewValue;
+        if (type) {
+          return type.viewValue;
+        } else {
+          return 'New Task';
+        }
+
       case 'status':
         const status = statusTypes.find((status) => status.value === value);
         return status?.viewValue;

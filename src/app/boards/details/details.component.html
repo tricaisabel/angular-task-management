@@ -1,12 +1,12 @@
 <div *ngIf="board; else boardNotFound">
-  <button mat-button color="primary" routerLink="/boards">
-    All Boards
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
+  <div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 40px">
+    <button mat-button color="primary" routerLink="/boards">
+      All Boards
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
 
-  <div fxLayout="row" fxLayoutAlign="space-between">
     <h1>
-      {{ board.title }}
+      {{ board.title }} <app-chip [text]="board.id.toString()"></app-chip>
     </h1>
     <div class="right-buttons">
       <button
@@ -30,9 +30,22 @@
     </div>
   </div>
 
-  <app-chip [text]="board.id.toString()"></app-chip>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start"
+    fxLayoutGap="75px"
+    style="margin-bottom: 40px"
+  >
+    <div>
+      <h2>Created by</h2>
+      <app-user-card [user]="board.createdBy"></app-user-card>
+    </div>
 
-  <app-user-card [user]="board.createdBy"></app-user-card>
+    <div>
+      <h2>Project Stats</h2>
+      <app-chart progress="50" assigned="20" onTrack="80"></app-chart>
+    </div>
+  </div>
 
   <div fxLayout="row" class="input-list">
     <mat-button-toggle-group>
@@ -44,7 +57,7 @@
   </div>
 
   <app-kanban *ngIf="kanban.checked" [boardId]="id"></app-kanban>
-  <app-listview *ngIf="!kanban.checked" [boardId]="id"></app-listview>
+  <app-listview *ngIf="list.checked" [boardId]="id"></app-listview>
 </div>
 
 <ng-template #boardNotFound>

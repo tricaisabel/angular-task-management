@@ -57,6 +57,7 @@ export class TaskDialogComponent implements OnInit {
       );
     }
 
+    if (!this.data.team) return;
     this.options = [];
     this.data.team.forEach((member: TeamMember) => {
       this.options.push({ username: member.username, id: member.id });
@@ -76,10 +77,9 @@ export class TaskDialogComponent implements OnInit {
 
   onSubmit() {
     const form = this.form.value;
-    console.log(form);
     const assignedId = this.myControl.getRawValue();
     const sAssignedId = assignedId?.toString();
-    if (this.templateMode === true && sAssignedId) {
+    if (this.templateMode === true) {
       this.boardsService.newTask(form, this.data.boardId);
     } else {
       this.boardsService.editTask(this.task.id, form, sAssignedId!);

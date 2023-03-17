@@ -14,6 +14,8 @@ import { ChipComponent } from './chip/chip.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ChartComponent } from './chart/chart.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { RouterModule } from '@angular/router';
     UserCardComponent,
     ChipComponent,
     FooterComponent,
+    ChartComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     TextFieldModule,
     RouterModule,
+    GoogleChartsModule.forRoot(),
   ],
   exports: [
     //shared components
@@ -52,6 +56,8 @@ import { RouterModule } from '@angular/router';
     DragDropModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    GoogleChartsModule,
+    ChartComponent,
   ],
 })
 export class SharedModule {}

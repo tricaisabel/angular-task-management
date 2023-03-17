@@ -17,3 +17,8 @@
   margin: 0 !important;
   padding: 0;
 }
+
+h2 {
+  font-size: 17px;
+  font-weight: 400;
+}

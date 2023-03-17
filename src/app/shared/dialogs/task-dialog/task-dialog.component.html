@@ -9,7 +9,7 @@
   >
     <mat-icon>{{ getIcon() }}</mat-icon>
     <div>{{ getName("type", task.type) }}</div>
-    <app-chip [text]="task.id"></app-chip>
+    <app-chip *ngIf="!templateMode" [text]="task.id"></app-chip>
   </div>
 
   <button
@@ -141,7 +141,7 @@
           ></textarea>
         </mat-form-field>
 
-        <div class="section">
+        <div class="section" *ngIf="!templateMode">
           <p>Created by</p>
           <app-user-card [user]="task.createdBy"></app-user-card>
         </div>
